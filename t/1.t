@@ -1,4 +1,4 @@
-# $Id: 1.t,v 1.5 2004/06/04 08:30:42 jmates Exp $
+# $Id: 1.t,v 1.6 2004/06/04 08:34:11 jmates Exp $
 #
 # Initial "does it load and perform basic operations" tests
 #
@@ -14,10 +14,10 @@ use strict;
 #use Test::More 'no_plan';
 use Test::More tests => 6;
 
-BEGIN { use_ok( 'Term::CallEditor' ) }
+BEGIN { use_ok('Term::CallEditor') }
 
-ok( defined $Editor::VERSION, '$VERSION defined' );
-diag "Version is $Editor::VERSION" if exists $ENV{'TEST_VERBOSE'};
+ok( defined $Term::CallEditor::VERSION, '$VERSION defined' );
+diag "Version is $Term::CallEditor::VERSION" if exists $ENV{'TEST_VERBOSE'};
 
 ok( defined &solicit, 'have solicit function' );
 
