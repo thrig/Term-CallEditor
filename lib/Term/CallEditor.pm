@@ -1,4 +1,4 @@
-# $Id: CallEditor.pm,v 1.6 2004/06/04 08:34:56 jmates Exp $
+# $Id: CallEditor.pm,v 1.7 2004/06/04 14:52:52 jmates Exp $
 #
 # Copyright 2004 by Jeremy Mates
 #
@@ -156,10 +156,9 @@ for details.
 =item Pass in a block of text to the editor.
 
   my $fh = solicit(<< "BLARB");
-
-FOO: This is an example designed to span multiple lines for the sake of
-FOO: an example that span multiple lines.
-BLARB
+  FOO: This is an example designed to span multiple lines for the sake
+  FOO: of an example that span multiple lines.
+  BLARB
 
 =back
 
@@ -182,6 +181,6 @@ inspired from.
 
 =head1 VERSION
 
-  $Id: CallEditor.pm,v 1.6 2004/06/04 08:34:56 jmates Exp $
+  $Id: CallEditor.pm,v 1.7 2004/06/04 14:52:52 jmates Exp $
 
 =cut
