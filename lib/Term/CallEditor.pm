@@ -1,4 +1,4 @@
-# $Id: CallEditor.pm,v 1.4 2004/06/04 08:30:42 jmates Exp $
+# $Id: CallEditor.pm,v 1.5 2004/06/04 08:32:50 jmates Exp $
 #
 # Copyright 2004 by Jeremy Mates
 #
@@ -16,7 +16,7 @@ use 5.005;
 use strict;
 use warnings;
 
-use vars qw(@EXPORT_OK @ISA $errstr $timeout $VERSION);
+use vars qw(@EXPORT @ISA $errstr $timeout $VERSION);
 @EXPORT = qw(solicit);
 @ISA    = qw(Exporter);
 use Exporter;
@@ -182,6 +182,6 @@ inspired from.
 
 =head1 VERSION
 
-  $Id: CallEditor.pm,v 1.4 2004/06/04 08:30:42 jmates Exp $
+  $Id: CallEditor.pm,v 1.5 2004/06/04 08:32:50 jmates Exp $
 
 =cut
