@@ -1,7 +1,9 @@
 Editor
 ==========================
 
-TODO - notes on what module does, how to use it.
+This module calls an external editor with an optional text message and
+returns what was input as a file handle. For more documentation, consult
+the perldoc in Editor.pm.
 
 INSTALLATION
 
@@ -16,7 +18,7 @@ DEPENDENCIES
 
 This module requires these other modules and libraries:
 
-# TODO fix
+File::Temp
 
 COPYRIGHT AND LICENCE
 
@@ -25,4 +27,4 @@ Copyright (C) 2004 Jeremy Mates
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself. 
 
-$Id: README,v 1.1 2004/06/04 04:18:26 jmates Exp $
+$Id: README,v 1.2 2004/06/04 08:03:53 jmates Exp $

@@ -1,4 +1,4 @@
-# $Id: 1.t,v 1.2 2004/06/04 07:08:35 jmates Exp $
+# $Id: 1.t,v 1.3 2004/06/04 08:03:55 jmates Exp $
 #
 # Initial "does it load and perform basic operations" tests
 #
@@ -12,11 +12,14 @@ use strict;
 use Test::More tests => 6;
 
 BEGIN { use_ok( 'Editor', qw{solicit} ) }
+
 ok( defined $Editor::VERSION, '$VERSION defined' );
-ok( defined &solicit,         'have solicit function' );
+diag "Version is $Editor::VERSION" if exists $ENV{'TEST_VERBOSE'};
+
+ok( defined &solicit, 'have solicit function' );
 
 SKIP: {
-  skip 'vi unhappy without terminal', 1;
+  skip 'vim issues "Output is not to a terminal" error', 1;
 
   my $to_editor   = 'Quit without changing anything.';
   my $from_editor = solicit($to_editor)->getline;
