@@ -1,0 +1,28 @@
+Editor
+==========================
+
+TODO - notes on what module does, how to use it.
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+DEPENDENCIES
+
+This module requires these other modules and libraries:
+
+# TODO fix
+
+COPYRIGHT AND LICENCE
+
+Copyright (C) 2004 Jeremy Mates
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself. 
+
+$Id: README,v 1.1 2004/06/04 04:18:26 jmates Exp $
