@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.1 2004/06/04 04:18:26 jmates Exp $
+# $Id: Makefile.PL,v 1.2 2004/06/04 07:12:27 jmates Exp $
 
 use 5.005;
 use ExtUtils::MakeMaker;
@@ -7,8 +7,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME              => 'Editor',
     VERSION_FROM      => 'lib/Editor.pm',
-# TODO fix!!
-#    PREREQ_PM         => { 'XML::LibXML' => 1.53, 'XML::LibXSLT' => 1.52 },
+    PREREQ_PM         => { 'File::Temp' => 0.05 },
     ($] >= 5.005 ?
       (ABSTRACT_FROM  => 'lib/Editor.pm',
        AUTHOR         => 'Jeremy Mates <jmates@sial.org>') : ()),
