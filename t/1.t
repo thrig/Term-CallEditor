@@ -1,9 +1,12 @@
-# $Id: 1.t,v 1.3 2004/06/04 08:03:55 jmates Exp $
+# $Id: 1.t,v 1.4 2004/06/04 08:08:12 jmates Exp $
 #
 # Initial "does it load and perform basic operations" tests
 #
 # TODO figure out support for non-terminal things like emacsclient,
 # bbedit on Mac OS X or wacky Windows things?
+#
+# 'make test' has terminal issues, to test, use something like:
+# perl -Iblib/lib -MEditor=solicit -e 'my $fh = solicit(); print while <$fh>'
 
 use warnings;
 use strict;
