@@ -1,4 +1,4 @@
-# $Id: CallEditor.pm,v 1.8 2004/06/04 15:51:41 jmates Exp $
+# $Id: CallEditor.pm,v 1.9 2004/06/04 17:30:37 jmates Exp $
 #
 # Copyright 2004 by Jeremy Mates
 #
@@ -16,13 +16,10 @@ use 5.005;
 use strict;
 use warnings;
 
-use vars qw(@EXPORT @ISA $errstr $timeout $VERSION);
+use vars qw(@EXPORT @ISA $VERSION $errstr);
 @EXPORT = qw(solicit);
 @ISA    = qw(Exporter);
 use Exporter;
-
-# TODO need timeout? disable by default? will it work? who knows?!
-$timeout = 3600;
 
 use Fcntl qw(:DEFAULT :flock);
 use File::Temp qw(tempfile);
@@ -65,23 +62,8 @@ sub solicit {
   # need to unlock for external editor
   flock $tfh, LOCK_UN;
 
-  my $status;
-  eval {
-    local $SIG{'ALRM'} =
-     sub { die "external editor timeout: duration=$timeout\n" };
-    alarm $timeout;
-    eval {
-
-      # TODO how suppress "Can't exec" error system returns?
-      $status = system $editor, $filename;
-    };
-    alarm 0;
-  };
-  alarm 0;
-  if ($@) {
-    chomp( $errstr = $@ );
-    return;
-  }
+  # TODO how suppress "Can't exec" error system returns?
+  my $status = system $editor, $filename;
 
   if ( $status != 0 ) {
     $errstr =
