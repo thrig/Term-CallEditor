@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.2 2004/06/04 07:12:27 jmates Exp $
+# $Id: Makefile.PL,v 1.3 2004/06/04 08:30:42 jmates Exp $
 
 use 5.005;
 use ExtUtils::MakeMaker;
@@ -6,9 +6,9 @@ use ExtUtils::MakeMaker;
 # the contents of the Makefile that is written.
 WriteMakefile(
     NAME              => 'Editor',
-    VERSION_FROM      => 'lib/Editor.pm',
+    VERSION_FROM      => 'lib/Term/CallEditor.pm',
     PREREQ_PM         => { 'File::Temp' => 0.05 },
     ($] >= 5.005 ?
-      (ABSTRACT_FROM  => 'lib/Editor.pm',
+      (ABSTRACT_FROM  => 'lib/Term/CallEditor.pm',
        AUTHOR         => 'Jeremy Mates <jmates@sial.org>') : ()),
 );

@@ -1,4 +1,4 @@
-# $Id: CallEditor.pm,v 1.3 2004/06/04 08:03:54 jmates Exp $
+# $Id: CallEditor.pm,v 1.4 2004/06/04 08:30:42 jmates Exp $
 #
 # Copyright 2004 by Jeremy Mates
 #
@@ -10,16 +10,15 @@
 #
 # Run perldoc(1) on this module for additional documentation.
 
-# TODO get a better name??
-package Editor;
+package Term::CallEditor;
 
 use 5.005;
 use strict;
 use warnings;
 
 use vars qw(@EXPORT_OK @ISA $errstr $timeout $VERSION);
-@EXPORT_OK = qw(solicit);
-@ISA       = qw(Exporter);
+@EXPORT = qw(solicit);
+@ISA    = qw(Exporter);
 use Exporter;
 
 # TODO need timeout? disable by default? will it work? who knows?!
@@ -122,12 +121,16 @@ __END__
 
 =head1 NAME
 
-Editor - solicit for data from an external Editor
+Term::CallEditor - solicit for data from an external Editor
 
 =head1 SYNOPSIS
 
-  use Editor qw(solicit);
+  use Term::CallEditor
+
   my $fh = solicit('FOO: please replace this text');
+  die "$Term::CallEditor::errstr\n" unless $fh;
+
+  print while <$fh>;
 
 =head1 DESCRIPTION
 
@@ -143,7 +146,8 @@ The solicit() function currently can parse a message from a number of
 formats, including a scalar, scalar reference, array, or objects with
 the 'getlines' method such as IO::Handle or IO::All.
 
-On error, solicit() returns undef. Consult $Editor::errstr for details.
+On error, solicit() returns undef. Consult $Term::CallEditor::errstr
+for details.
 
 =head1 EXAMPLES
 
@@ -178,6 +182,6 @@ inspired from.
 
 =head1 VERSION
 
-  $Id: CallEditor.pm,v 1.3 2004/06/04 08:03:54 jmates Exp $
+  $Id: CallEditor.pm,v 1.4 2004/06/04 08:30:42 jmates Exp $
 
 =cut

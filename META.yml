@@ -1,7 +1,7 @@
 #XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
-name:         Editor
+name:         Term::CallEditor
 version:      0.05
-version_from: lib/Editor.pm
+version_from: lib/Term/CallEditor.pm
 installdirs:  site
 requires:
     File::Temp:                    0.05
