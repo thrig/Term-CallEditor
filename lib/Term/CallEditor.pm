@@ -1,4 +1,4 @@
-# $Id: CallEditor.pm,v 1.7 2004/06/04 14:52:52 jmates Exp $
+# $Id: CallEditor.pm,v 1.8 2004/06/04 15:51:41 jmates Exp $
 #
 # Copyright 2004 by Jeremy Mates
 #
@@ -29,7 +29,7 @@ use File::Temp qw(tempfile);
 
 use POSIX qw(getpgrp tcgetpgrp);
 
-$VERSION = '0.10';
+$VERSION = '0.11';
 
 sub solicit {
   my $message = shift;
@@ -125,7 +125,7 @@ Term::CallEditor - solicit for data from an external Editor
 
 =head1 SYNOPSIS
 
-  use Term::CallEditor
+  use Term::CallEditor;
 
   my $fh = solicit('FOO: please replace this text');
   die "$Term::CallEditor::errstr\n" unless $fh;
@@ -135,19 +135,16 @@ Term::CallEditor - solicit for data from an external Editor
 =head1 DESCRIPTION
 
 This module calls an external editor with an optional text message and
-returns what was input as a file handle. 
+returns what was input as a file handle. By default, the EDITOR
+environment variable will be used, otherwise C<vi>.
 
-By default, the EDITOR environment variable will be used, otherwise
-C<vi>. Editors beyond C<vi> have not been tested, e.g. C<emacsclient>,
-C<bbedit>. on Mac OS X, or wacky Windows things that all will likely require
-additional code to be added to this module.
-
-The solicit() function currently can parse a message from a number of
+The C<solicit()> function currently can parse a message from a number of
 formats, including a scalar, scalar reference, array, or objects with
-the 'getlines' method such as IO::Handle or IO::All.
+the C<getlines> method such as L<IO::Handle|IO::Handle> or
+L<IO::All|IO::All>.
 
-On error, solicit() returns undef. Consult $Term::CallEditor::errstr
-for details.
+On error, C<solicit()> returns C<undef>. Consult
+C<$Term::CallEditor::errstr> for details.
 
 =head1 EXAMPLES
 
@@ -156,15 +153,25 @@ for details.
 =item Pass in a block of text to the editor.
 
   my $fh = solicit(<< "BLARB");
+
   FOO: This is an example designed to span multiple lines for the sake
   FOO: of an example that span multiple lines.
   BLARB
+
+=item Support bbedit(1) on Mac OS X.
+
+To use bbedit(1) as the EDITOR, create a shell script wrapper to
+call bbedit(1) as follows, then set the wrapper as the EDITOR
+environment variable.
+
+  #!/bin/sh
+  exec bbedit -w "$@"
 
 =back
 
 =head1 AUTHOR
 
-Jeremy Mates, E<lt>jmates@sial.org<gt>
+Jeremy Mates, E<lt>jmates@sial.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
@@ -178,9 +185,5 @@ it under the same terms as Perl itself.
 Version control systems like CVS and Subversion have similar
 behaviour to prompt a user for a commit message, which this module is
 inspired from.
-
-=head1 VERSION
-
-  $Id: CallEditor.pm,v 1.7 2004/06/04 14:52:52 jmates Exp $
 
 =cut
