@@ -1,4 +1,4 @@
-# $Id: CallEditor.pm,v 1.5 2004/06/04 08:32:50 jmates Exp $
+# $Id: CallEditor.pm,v 1.6 2004/06/04 08:34:56 jmates Exp $
 #
 # Copyright 2004 by Jeremy Mates
 #
@@ -29,7 +29,7 @@ use File::Temp qw(tempfile);
 
 use POSIX qw(getpgrp tcgetpgrp);
 
-$VERSION = '0.05';
+$VERSION = '0.10';
 
 sub solicit {
   my $message = shift;
@@ -182,6 +182,6 @@ inspired from.
 
 =head1 VERSION
 
-  $Id: CallEditor.pm,v 1.5 2004/06/04 08:32:50 jmates Exp $
+  $Id: CallEditor.pm,v 1.6 2004/06/04 08:34:56 jmates Exp $
 
 =cut
