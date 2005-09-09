@@ -1,12 +1,13 @@
-# $Id: CallEditor.pm,v 1.9 2004/06/04 17:30:37 jmates Exp $
+# $Id: CallEditor.pm,v 1.10 2005/09/09 00:48:33 jmates Exp $
 #
-# Copyright 2004 by Jeremy Mates
+# Copyright (c) 2004-2005, Jeremy Mates. All Rights Reserved. This
+# module is free software. It may be used, redistributed and/or modified
+# under the terms of the Perl Artistic License:
 #
-# This library is free software; you can redistribute it and/or modify
-# it under the same terms as Perl itself.
+# http://www.perl.com/perl/misc/Artistic.html
 #
-# Solicits for data from an external Editor such as 'vi' or whatever the
-# EDITOR environment variable is set to.
+# Solicits data from an external editor determined by the EDITOR
+# environment variable.
 #
 # Run perldoc(1) on this module for additional documentation.
 
@@ -67,9 +68,9 @@ sub solicit {
 
   if ( $status != 0 ) {
     $errstr =
-     ( $status != -1 )
-     ? "external editor failed: editor=$editor, errno=$?"
-     : "could not launch program: editor=$editor, errno=$!";
+      ( $status != -1 )
+      ? "external editor failed: editor=$editor, errno=$?"
+      : "could not launch program: editor=$editor, errno=$!";
     return undef;
   }
 
@@ -103,11 +104,11 @@ __END__
 
 =head1 NAME
 
-Term::CallEditor - solicit for data from an external Editor
+Term::CallEditor - solicit data from an external editor
 
 =head1 SYNOPSIS
 
-  use Term::CallEditor;
+  use Term::CallEditor qw(solicit);
 
   my $fh = solicit('FOO: please replace this text');
   die "$Term::CallEditor::errstr\n" unless $fh;
@@ -116,14 +117,13 @@ Term::CallEditor - solicit for data from an external Editor
 
 =head1 DESCRIPTION
 
-This module calls an external editor with an optional text message and
-returns what was input as a file handle. By default, the EDITOR
-environment variable will be used, otherwise C<vi>.
+This module calls an external editor with an optional text message, then
+returns any data from this editor as a file handle. By default, the
+EDITOR environment variable will be used, otherwise C<vi>.
 
-The C<solicit()> function currently can parse a message from a number of
-formats, including a scalar, scalar reference, array, or objects with
-the C<getlines> method such as L<IO::Handle|IO::Handle> or
-L<IO::All|IO::All>.
+The C<solicit()> function supports different input formats, including a
+scalar, scalar reference, array, or objects with the C<getlines> method
+(L<IO::Handle|IO::Handle> or L<IO::All|IO::All>, for example).
 
 On error, C<solicit()> returns C<undef>. Consult
 C<$Term::CallEditor::errstr> for details.
@@ -134,16 +134,16 @@ C<$Term::CallEditor::errstr> for details.
 
 =item Pass in a block of text to the editor.
 
-  my $fh = solicit(<< "BLARB");
+  my $fh = solicit(<< "END_BLARB");
 
   FOO: This is an example designed to span multiple lines for the sake
   FOO: of an example that span multiple lines.
-  BLARB
+  END_BLARB
 
 =item Support bbedit(1) on Mac OS X.
 
-To use bbedit(1) as the EDITOR, create a shell script wrapper to
-call bbedit(1) as follows, then set the wrapper as the EDITOR
+To use BBEdit as the external editor, create a shell script
+wrapper to call bbedit(1), then set this wrapper as the EDITOR
 environment variable.
 
   #!/bin/sh
@@ -157,15 +157,14 @@ Jeremy Mates, E<lt>jmates@sial.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2004 by Jeremy Mates
+Copyright (c) 2004-2005, Jeremy Mates. All Rights Reserved. This module
+is free software. It may be used, redistributed and/or modified under
+the terms of the Perl Artistic License:
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself. 
+http://www.perl.com/perl/misc/Artistic.html
 
 =head1 HISTORY
 
-Version control systems like CVS and Subversion have similar
-behaviour to prompt a user for a commit message, which this module is
-inspired from.
+Inspired from the CVS prompt-user-for-commit-message functionality.
 
 =cut
