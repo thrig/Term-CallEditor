@@ -1,4 +1,4 @@
-# $Id: CallEditor.pm,v 1.10 2005/09/09 00:48:33 jmates Exp $
+# $Id: CallEditor.pm,v 1.11 2009/03/05 04:28:58 jmates Exp $
 #
 # Copyright (c) 2004-2005, Jeremy Mates. All Rights Reserved. This
 # module is free software. It may be used, redistributed and/or modified
@@ -27,7 +27,7 @@ use File::Temp qw(tempfile);
 
 use POSIX qw(getpgrp tcgetpgrp);
 
-$VERSION = '0.11';
+$VERSION = '0.12';
 
 sub solicit {
   my $message = shift;
