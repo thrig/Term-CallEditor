@@ -1,10 +1,9 @@
-# $Id: CallEditor.pm,v 1.12 2009/03/06 06:27:51 jmates Exp $
+# $Id: CallEditor.pm,v 1.13 2009/03/07 02:30:27 jmates Exp $
 #
-# Copyright (c) 2004-2005, Jeremy Mates. All Rights Reserved. This
-# module is free software. It may be used, redistributed and/or modified
-# under the terms of the Perl Artistic License:
+# The author disclaims all copyrights and releases this module into the
+# public domain.
 #
-# http://www.perl.com/perl/misc/Artistic.html
+# http://creativecommons.org/licenses/publicdomain/
 #
 # Solicits data from an external editor determined by the EDITOR
 # environment variable.
@@ -27,7 +26,7 @@ use File::Temp qw(tempfile);
 
 use POSIX qw(getpgrp tcgetpgrp);
 
-$VERSION = '0.13';
+$VERSION = '0.14';
 
 sub solicit {
   my $message = shift;
@@ -157,11 +156,10 @@ Jeremy Mates, E<lt>jmates@sial.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2004-2005, Jeremy Mates. All Rights Reserved. This module
-is free software. It may be used, redistributed and/or modified under
-the terms of the Perl Artistic License:
+The author disclaims all copyrights and releases this module into the
+public domain.
 
-http://www.perl.com/perl/misc/Artistic.html
+http://creativecommons.org/licenses/publicdomain/
 
 =head1 HISTORY
 
