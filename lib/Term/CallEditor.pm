@@ -14,7 +14,9 @@ package Term::CallEditor;
 use strict;
 use warnings;
 
-use vars qw(@EXPORT @ISA $VERSION $errstr $TMP_TEMPLATE);
+require 5.006;
+
+use vars qw(@EXPORT @ISA $VERSION $errstr);
 @EXPORT = qw(solicit);
 @ISA    = qw(Exporter);
 use Exporter;
