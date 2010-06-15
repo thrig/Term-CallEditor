@@ -7,6 +7,10 @@
 #
 # solicit 'Type something in'
 # echo    'Type something in' | solicit -
+#
+# Though the second form will likely cause problems with editors that
+# share the terminal, such as vi, and will likely instead only work with
+# editors run externally, such as "bbedit -w" or emacsclient.
 
 use strict;
 use warnings;
