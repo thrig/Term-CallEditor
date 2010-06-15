@@ -1,6 +1,4 @@
-# $Id: pod.t,v 1.2 2004/06/04 07:08:35 jmates Exp $
-#
-# Attempt to test any POD files if possible.
+#!/usr/bin/perl
 
 use warnings;
 use strict;

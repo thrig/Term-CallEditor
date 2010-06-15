@@ -1,9 +1,8 @@
-lib/Term/CallEditor.pm
-Changes
 LICENSE
-Makefile.PL
 MANIFEST
+META.yml
+Makefile.PL
 README
+lib/Term/CallEditor.pm
 t/1.t
 t/pod.t
-META.yml

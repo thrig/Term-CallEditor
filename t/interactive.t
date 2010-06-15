@@ -1,10 +1,10 @@
-# $Id: interactive.t,v 1.1 2009/03/06 06:27:51 jmates Exp $
-#
 # TODO figure out support for non-terminal things like emacsclient, or
 # wacky Windows things?
 #
-# 'make test' has terminal issues, to test, use something like:
-# perl -Iblib/lib -MTerm::CallEditor -e 'my $fh = solicit(); print while <$fh>'
+# 'make test' has terminal issues, to test manually, run the eg/solicit
+# script:
+#
+# env PERL5LIB=blib/lib eg/solicit foo
 
 use warnings;
 use strict;
@@ -25,7 +25,7 @@ $ENV{'EDITOR'} = 'false';
 is( solicit(), undef, 'editor should fail as calling false' );
 diag $Editor::errstr if exists $ENV{'TEST_VERBOSE'};
 
-$ENV{'EDITOR'} = "nosuchapplication\n";
+$ENV{'EDITOR'} = "noapp-$$-".int(rand(9999999));
 is( solicit(), undef, 'editor should fail as calling nonexistant app' );
 diag $Editor::errstr if exists $ENV{'TEST_VERBOSE'};
 

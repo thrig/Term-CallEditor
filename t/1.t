@@ -1,5 +1,3 @@
-# $Id: 1.t,v 1.8 2009/03/06 06:27:51 jmates Exp $
-#
 # Initial "does it load and perform basic operations" tests.
 
 use warnings;
