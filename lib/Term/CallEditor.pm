@@ -148,23 +148,25 @@ the code is not running under a terminal.
 =back
 
 On error, C<solicit()> returns C<undef>. Consult
-C<$Term::CallEditor::errstr> for details.
+C<$Term::CallEditor::errstr> for details. Note that L<File::Temp> may
+throw a fatal error, so paranoid coders should wrap the C<solicit> call
+in an C<eval> block.
 
 =head1 EXAMPLES
 
 =over 4
 
-=item Pass in a block of text to the editor.
+=item B<Pass in a block of text to the editor>
 
 Use a here doc:
 
   my $fh = solicit(<< "END_BLARB");
 
-  FOO: This is an example designed to span multiple lines for the sake
-  FOO: of an example that span multiple lines.
+  FOO: This is an example designed to span multiple lines for
+  FOO: the sake of an example that span multiple lines.
   END_BLARB
 
-=item Support bbedit(1) on Mac OS X.
+=item B<Support bbedit(1) on Mac OS X>
 
 To use BBEdit as the external editor, create a shell script
 wrapper to call bbedit(1), then set this wrapper as the EDITOR
@@ -191,8 +193,9 @@ http://github.com/thrig/Term-CallEditor
 =head2 Known Issues
 
 This module relies heavily on the Unix terminal, permissions on the
-temporary directory (for C<File::Temp->safe_level), whether C<system()>
-can actually run the C<EDITOR> environment variable, and so forth.
+temporary directory (for the L<File::Temp> module C<safe_level> call),
+whether C<system()> can actually run the C<EDITOR> environment variable,
+and so forth.
 
 =head1 AUTHOR
 
