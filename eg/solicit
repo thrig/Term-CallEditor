@@ -18,7 +18,7 @@ if (@ARGV) {
   $message = $ARGV[0] eq '-' ? \*STDIN : $ARGV[0];
 }
 
-my $fh = solicit( $message, { DIR => ".", UNLINK => 0 } );
+my $fh = solicit($message);
 if ( !defined $fh ) {
   die "error: no result from solicit: $Term::CallEditor::errstr\n";
 }
