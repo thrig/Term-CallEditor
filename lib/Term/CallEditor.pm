@@ -27,22 +27,31 @@ use IO::Handle;
 
 use POSIX qw(getpgrp tcgetpgrp);
 
-$VERSION = '0.51';
+$VERSION = '0.60';
 
 sub solicit {
-  my $message          = shift;
-  my $skip_interactive = shift;
+  my $message = shift;
+  my $params = shift || {};
 
-  unless ($skip_interactive) {
+  unless ( exists $params->{skip_interative} and $params->{skip_interative} )
+  {
     return unless _is_interactive();
   }
 
-  File::Temp->safe_level(2);
+  $params->{safe_level} = 2 unless exists $params->{safe_level};
+  File::Temp->safe_level( $params->{safe_level} );
   my ( $tfh, $filename ) = tempfile( UNLINK => 1 );
 
   unless ( $tfh and $filename ) {
     $errstr = 'no temporary file';
     return;
+  }
+
+  if ( exists $params->{binmode_layer}
+    and defined $params->{binmode_layer} ) {
+    binmode( $tfh, $params->{binmode_layer} );
+  } elsif ( exists $params->{BINMODE} and $params->{BINMODE} ) {
+    binmode($tfh);
   }
 
   select( ( select($tfh), $|++ )[0] );
@@ -55,8 +64,18 @@ sub solicit {
       print $tfh $$message;
     } elsif ( $ref eq 'ARRAY' ) {
       print $tfh "@$message";
+    } elsif ( $ref eq 'GLOB' ) {
+      while ( my $line = <$message> ) {
+        print $tfh $line;
+      }
     } elsif ( UNIVERSAL::can( $message, 'getlines' ) ) {
       print $tfh $message->getlines;
+    }
+    # Help the bits reach the disk
+    $tfh->flush();
+    # TODO may need eval or exclude on other platforms
+    if ( $^O !~ m/Win32/ ) {
+      $tfh->sync();
     }
   }
 
@@ -126,33 +145,54 @@ the C<solicit()> function, then returns any data from this editor as a
 file handle. By default, the EDITOR environment variable will be used,
 otherwise C<vi>.
 
-The optional arguments to C<solicit()> are:
+C<solicit()> returns a temporary file handle pointing to what was
+written in the editor (or also the filename in list context).
+
+=head1 SOLICIT
+
+C<solicit()> as a second argument accepts a number of optional
+parameters as a hash reference.
+
+  solicit(
+    "\x{8ACB}",
+    { skip_interactive => 1,
+      binmode_layer => ':utf8'
+    }
+  );
 
 =over 4
 
-=item 1
+=item B<BINMODE> => I<BOOLEAN>
 
-The first argument to the C<solicit()> function contains an optional
-message to print in the external editor. The module supports different
-input formats, including a scalar, scalar reference, array, or objects
-with the C<getlines> method (L<IO::Handle|IO::Handle> or
-L<IO::All|IO::All>, for example).
+If true, enables C<binmode> on the filehandle prior to writing the
+message to it.
 
-=item 2
+=item B<binmode_layer> => I<binmode layer>
 
-If the optional second parameter to C<solicit()> is set to true, the
-module will skip the check whether the terminal is interactive. This may
-be necessary if the EDITOR can run in some non-terminal environment, and
-the code is not running under a terminal.
+If set, enables C<binmode> on the filehandle prior to writing the
+message to it. Useful if one needs to write UTF-8 or some other encoded
+data as a message to the EDITOR.
+
+=item B<safe_level> => I<NUMBER>
+
+Set a custom C<safe_level> value for the L<File::Temp> method of that
+name. The default C<safe_level> is number 2. Be seeing you.
+
+=item B<skip_interactive> => I<BOOLEAN>
+
+If true, C<solicit> skips making a test to see whether the terminal is
+interactive.
 
 =back
 
 On error, C<solicit()> returns C<undef>. Consult
 C<$Term::CallEditor::errstr> for details. Note that L<File::Temp> may
-throw a fatal error, so paranoid coders should wrap the C<solicit> call
-in an C<eval> block.
+throw a fatal error if the C<safe_level> checks fail, so paranoid coders
+should wrap the C<solicit> call in an C<eval> block.
 
 =head1 EXAMPLES
+
+See also the C<eg/solicit> script under the module distribution.
 
 =over 4
 
@@ -168,12 +208,15 @@ Use a here doc:
 
 =item B<Support bbedit(1) on Mac OS X>
 
-To use BBEdit as the external editor, create a shell script
-wrapper to call bbedit(1), then set this wrapper as the EDITOR
-environment variable.
+To use BBEdit as the external editor, create a shell script wrapper to
+call bbedit(1), then set this wrapper as the EDITOR environment
+variable. The C<-t> option to bbedit(1) can be used to set a custom
+title, if desired.
 
   #!/bin/sh
   exec bbedit -w "$@"
+
+Any editor that requires arguments will require a wrapper like this.
 
 =back
 
