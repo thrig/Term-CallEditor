@@ -1,22 +1,29 @@
---- #YAML:1.0
-name: Term-CallEditor
-abstract: solicit data from an external editor
-version: 0.50
+---
+abstract: 'solicit data from an external editor'
 author:
-  - Jeremy Mates <jmates@sial.org>
-license: artistic
+  - 'Jeremy Mates, <jmates@sial.org>'
+build_requires:
+  ExtUtils::MakeMaker: 6.42
+  Test::More: 0.72
+configure_requires:
+  ExtUtils::MakeMaker: 6.42
 distribution_type: module
+generated_by: 'Module::Install version 0.99'
+license: artistic
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Term-CallEditor
+no_index:
+  directory:
+    - inc
+    - t
 requires:
-  perl: 5.006
   File::Temp: 0.18
   IO::Handle: 0
-build_requires:
-  Test::More: 0.72
+  perl: 5.6.0
 resources:
+  bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Term-CallEditor
   license: http://dev.perl.org/licenses/artistic.html
   repository: http://github.com/thrig/Term-CallEditor
-  bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Term-CallEditor
-meta-spec:
-  version: 1.4
-  url: http://module-build.sourceforge.net/META-spec-v1.4.html
-generated_by: hand
+version: 0.50
