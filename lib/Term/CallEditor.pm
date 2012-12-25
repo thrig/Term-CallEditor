@@ -4,7 +4,7 @@
 # environment variable. Run perldoc(1) on this module for additional
 # documentation.
 #
-# Copyright 2004-2005,2009-2010 Jeremy Mates
+# Copyright 2004-2005,2009-2010,2012 Jeremy Mates
 #
 # This module is free software; you can redistribute it and/or modify it
 # under the Artistic license.
@@ -27,7 +27,7 @@ use IO::Handle;
 
 use POSIX qw(getpgrp tcgetpgrp);
 
-$VERSION = '0.60';
+$VERSION = '0.61';
 
 sub solicit {
   my $message = shift;
@@ -231,7 +231,7 @@ Newer versions of this module may be available from CPAN.
 If the bug is in the latest version, send a report to the author.
 Patches that fix problems or add new features are welcome.
 
-http://github.com/thrig/Term-CallEditor
+L<http://github.com/thrig/Term-CallEditor>
 
 =head2 Known Issues
 
@@ -246,7 +246,7 @@ Jeremy Mates, E<lt>jmates@cpan.orgE<gt>
 
 =head1 COPYRIGHT
 
-Copyright 2004-2005,2009-2010 Jeremy Mates
+Copyright 2004-2005,2009-2010,2012 Jeremy Mates
 
 This program is free software; you can redistribute it and/or modify it
 under the Artistic license.
