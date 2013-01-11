@@ -1,3 +1,5 @@
+#!perl
+#
 # TODO figure out support for non-terminal things like emacsclient, or
 # wacky Windows things?
 #
