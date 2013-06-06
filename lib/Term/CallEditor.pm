@@ -27,7 +27,7 @@ use IO::Handle;
 
 use POSIX qw(getpgrp tcgetpgrp);
 
-$VERSION = '0.61';
+$VERSION = '0.62';
 
 sub solicit {
   my $message = shift;
