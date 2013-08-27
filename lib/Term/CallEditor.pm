@@ -240,6 +240,10 @@ temporary directory (for the L<File::Temp> module C<safe_level> call),
 whether C<system()> can actually run the C<EDITOR> environment variable,
 and so forth.
 
+=head1 SEE ALSO
+
+vipe(1) of moreutils to use vi(1) in pipes.
+
 =head1 AUTHOR
 
 Jeremy Mates, E<lt>jmates@cpan.orgE<gt>
