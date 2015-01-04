@@ -1,12 +1,26 @@
-Install via the cpan(1) command, or manually via:
+Term::CallEditor - solicit data from an external editor
 
-perl Makefile.PL
-make
-make test
-make install
+Install from CPAN:
 
-Run perldoc(1) on the Term::CallEditor module for more documentation.
+  cpan Term::CallEditor
 
-http://search.cpan.org/perldoc/Term::CallEditor
+For the source code, see:
 
-http://github.com/thrig/Term-CallEditor/
+http://github.com/thrig/Term-CallEditor
+
+This can be built and installed by running:
+
+  perl Makefile.PL
+  make
+  make test
+  make install
+
+Run perldoc(1) on Term::CallEditor for more documentation.
+
+COPYRIGHT AND LICENCE
+
+Copyright (C) 2004,2005,2009-2015 Jeremy Mates
+
+This library is free software; you can redistribute it and/or modify it under
+the same terms as Perl itself, either Perl version 5.16 or, at your option, any
+later version of Perl 5 you may have available.
