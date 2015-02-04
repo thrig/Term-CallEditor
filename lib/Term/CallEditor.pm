@@ -27,7 +27,7 @@ use IO::Handle;
 
 use POSIX qw(getpgrp tcgetpgrp);
 
-$VERSION = '0.63';
+$VERSION = '0.64';
 
 sub solicit {
   my $message = shift;
@@ -252,8 +252,8 @@ thrig - Jeremy Mates (cpan:JMATES) C<< <jmates at cpan.org> >>
 
 Copyright 2004-2005,2009-2010,2012 Jeremy Mates
 
-This program is free software; you can redistribute it and/or modify it
-under the Artistic license.
+This module is free software; you can redistribute it and/or modify it
+under the Artistic License (2.0).
 
 =head1 HISTORY
 

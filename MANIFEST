@@ -4,6 +4,7 @@ MANIFEST
 META.yml
 Makefile.PL
 README
+SIGNATURE
 eg/solicit
 lib/Term/CallEditor.pm
 t/1.t
