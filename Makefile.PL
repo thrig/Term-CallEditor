@@ -6,6 +6,12 @@ use strict;
 use warnings;
 use ExtUtils::MakeMaker;
 
+# due to cpantesters failures from Win32 smoke machines
+if ( $^O =~ m/MSWin32/ ) {
+  print "Sorry, no automated install on Windows due to lack of POSIX::tcgetpgrp.\n";
+  exit(0);
+}
+
 my %params = (
   NAME         => 'Term::CallEditor',
   ABSTRACT     => 'solicit data from an external editor',
