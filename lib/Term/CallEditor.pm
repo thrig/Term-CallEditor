@@ -27,19 +27,17 @@ use IO::Handle;
 
 use POSIX qw(getpgrp tcgetpgrp);
 
-$VERSION = '0.65';
+$VERSION = '0.66';
 
 sub solicit {
   my $message = shift;
   my $params = shift || {};
 
-  unless ( exists $params->{skip_interative} and $params->{skip_interative} )
-  {
+  unless ( exists $params->{skip_interative} and $params->{skip_interative} ) {
     return unless _is_interactive();
   }
 
-  $params->{safe_level} = 2 unless exists $params->{safe_level};
-  File::Temp->safe_level( $params->{safe_level} );
+  File::Temp->safe_level( $params->{safe_level} ) if exists $params->{safe_level};
   my ( $tfh, $filename ) = tempfile( UNLINK => 1 );
 
   unless ( $tfh and $filename ) {
