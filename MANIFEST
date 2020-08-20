@@ -1,12 +1,12 @@
+Build.PL
 Changes
 LICENSE
 MANIFEST
+META.json
 META.yml
-Makefile.PL
 README
-SIGNATURE
 eg/solicit
 lib/Term/CallEditor.pm
 t/1.t
-t/interactive.t
+t/pod-coverage.t
 t/pod.t
